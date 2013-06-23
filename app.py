@@ -14,7 +14,7 @@ import zipfile
 import urllib
 import csv
 import re
-from time import *
+from time import time
 from operator import itemgetter
 
 
