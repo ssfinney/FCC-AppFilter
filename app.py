@@ -27,7 +27,7 @@ scraperwiki.sqlite.execute("drop table 'Last Updated'")
 scraperwiki.sqlite.execute("create table 'Application Info'(" + 
       "'File Number' text, 'Call Sign' str, 'Applicant Name' str," + 
       "'FRN' str, 'Purpose' str, 'Receipt Date' date," + 
-      "'Status' str, 'Channel Block' char, 'Market' str, 'Location' str, 'System ID' str)")
+      "'Status' str, 'Channel Block' char, 'Market' str, 'Lat' str, 'Long' str, 'System ID' str)")
 scraperwiki.sqlite.execute("create table 'Last Updated'(Date datetime)")
 
 
@@ -139,8 +139,8 @@ with open("LO.dat") as f:
     reader = csv.reader(f, delimiter='|')
     for row in reader:
         if name_indexer.get(str(row[1]), -1) >= 0:
-            records[name_indexer.get(str(row[1]), -1)]['Location'] = str(row[19] + " " + row[20] + " " + row[21] + " " + row[22] + " " + 
-                                                                         row[23] + " " + row[24] + " " + row[25] + " " + row[26])
+            records[name_indexer.get(str(row[1]), -1)]['Lat']  = str(row[19] + " " + row[20] + " " + row[21] + " " + row[22])
+			records[name_indexer.get(str(row[1]), -1)]['Long'] = str(row[23] + " " + row[24] + " " + row[25] + " " + row[26])
         else:
             print "System ID " + str(row[1]) + " not found in other files."
 
